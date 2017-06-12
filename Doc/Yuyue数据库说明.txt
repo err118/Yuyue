@@ -1,0 +1,57 @@
+1.商户表shop
+主键bigint，
+商户编码varcahr，
+商户名称varcahr，
+商户电话varcahr，
+商户地址varchar，
+主管理者id
+
+2.用户表：user
+主键bigint，
+tokend标识（varchar）              
+微信id（varchar）
+姓名（varchar），
+手机号（varchar）
+密码（varchar），
+最后登录手机标识码（varcahr）
+最后登录时间
+
+3.服务分类表category
+主键bigint
+分类名称name
+添加时间time
+
+4.商户服务表shopservice
+主键bigint
+名称name
+分类名称varchar
+店铺名称varchar
+添加时间varchar
+5.用户服务userservice
+
+5.用户-服务关系表
+主键bigint
+用户id
+用户服务id
+
+6.商户-服务关系表
+主键bigint
+商户id
+商户服务id
+
+7.预约订单表
+主键bigint
+订单号varchar
+下单用户id varchar
+商户id varchar
+用户id  varchar
+
+8.服务评价表
+主键id bigint
+被评论用户id bigint
+评价内容varchar
+评价打分 int
+
+9.用户-评论关系表
+主键id
+评论用户id
