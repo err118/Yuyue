@@ -21,37 +21,43 @@ tokend标识（varchar）
 分类名称name
 添加时间time
 
-4.商户服务表shopservice
+4.商户服务表service_shop
+主键bigint
+名称name
+分类id bigint
+店铺id bigint
+服务介绍 varchar
+添加时间varchar
+
+5.用户服务service_user
 主键bigint
 名称name
 分类名称varchar
-店铺名称varchar
+用户id varchar
+服务介绍 varchar
 添加时间varchar
-5.用户服务userservice
 
-5.用户-服务关系表
+
+6.用户-服务关系表user_service_relation
 主键bigint
 用户id
 用户服务id
 
-6.商户-服务关系表
+7.商户-服务关系表shop_service_relation
 主键bigint
 商户id
 商户服务id
 
-7.预约订单表
+8.预约订单表order
 主键bigint
 订单号varchar
 下单用户id varchar
 商户id varchar
 用户id  varchar
 
-8.服务评价表
+9.服务评价表comment
 主键id bigint
 被评论用户id bigint
 评价内容varchar
 评价打分 int
-
-9.用户-评论关系表
-主键id
 评论用户id
