@@ -1,13 +1,26 @@
 1.商户表shop
-主键bigint，
+自增主键bigint，
+联合主键id bigint
 商户编码varcahr，
 商户名称varcahr，
 商户电话varcahr，
 商户地址varchar，
-主管理者id
+主管理者id varcahr
+主管理者wxid varchar
+
+2.商户的管理员表
+自增主键bigint
+联合主键bigint
+管理员tokenID varchar
+管理员wxid varcahr
+管理员用户名 varchar
+用户名密码 varchar
+是否主管理员 varchar
+管理员状态 varchar
 
 2.用户表：user
-主键bigint，
+自增主键bigint，
+联合主键 bigint
 tokend标识（varchar）              
 微信id（varchar）
 姓名（varchar），
@@ -26,38 +39,57 @@ tokend标识（varchar）
 名称name
 分类id bigint
 店铺id bigint
+服务标题 varchar
 服务介绍 varchar
-添加时间varchar
+添加时间 varchar
 
 5.用户服务service_user
 主键bigint
-名称name
-分类名称varchar
+联合主键 bigint
+服务名称name
+分类id bigint
 用户id varchar
+用户wxid varcahr
+用户手机号 varchar
+服务标题 varchar
 服务介绍 varchar
+服务状态 varchar
 添加时间varchar
 
 
-6.用户-服务关系表user_service_relation
+6.用户-服务分类关系表user_service_relation
 主键bigint
 用户id
-用户服务id
+服务分类id
+用户联合主键 bigint
 
-7.商户-服务关系表shop_service_relation
+7.商户-服务分类关系表shop_service_relation
 主键bigint
 商户id
-商户服务id
+商户服务分类id
 
 8.预约订单表order
 主键bigint
-订单号varchar
-下单用户id varchar
-商户id varchar
-用户id  varchar
+订单号（主键） varchar
+交易号（展示用，备用，同一个用户不重复）varchar
+下单用户id bigint
+下单用户联合id bingint
+服务id bigint
+被预约商户id bigint
+被预约商户联合主键 bingint
+被预约用户id  varchar
+被预约用户联合主键 bigint
+订单备注 varchar
+预约时间date
+订单金额 float
+下单时间date
+订单状态varchar
 
 9.服务评价表comment
 主键id bigint
 被评论用户id bigint
+被评论用户联合主键 bigint
 评价内容varchar
 评价打分 int
-评论用户id
+评论用户 id
+评论用户联合主键 bigint
