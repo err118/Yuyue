@@ -1,0 +1,75 @@
+2.用户表：user
+自增主键bigint，
+用户userid varchar
+tokend标识（varchar）              
+微信id（varchar）
+姓名（varchar），
+手机号（varchar）
+密码（varchar），
+余额  varcahr
+父亲用户id bigint
+最后登录手机标识码（varcahr）
+最后登录时间date
+
+3.服务分类表category
+主键bigint
+分类名称name varchar
+添加时间date
+
+4.商户服务表service_shop
+主键bigint
+名称name varchar
+服务标题 varchar
+服务介绍 varchar
+服务价格 float
+服务单位 varcahr
+服务状态 varchar
+分类id bigint
+店铺id bigint
+添加时间 varchar
+
+5.用户服务service_user
+主键bigint
+服务名称name varchar
+服务标题 varchar
+服务介绍 varchar
+服务价格 float
+服务单位 varchar
+服务状态 varchar
+分类id bigint
+用户id bigint
+添加时间varchar
+
+
+6.用户服务_分类关系表user_service_relation
+主键bigint
+用户id
+服务分类id
+
+7.商户服务_分类关系表shop_service_relation
+主键bigint
+商户id
+服务分类id
+
+8.预约订单表order
+主键bigint
+订单号 varchar
+交易号（展示用，备用，同一个用户不重复varchar
+下单用户id bigint
+服务id bigint
+被预约商户id bigint
+被预约商户联合主键 bingint
+被预约用户id  bigint
+被预约用户联合主键 bigint
+订单备注 varchar
+预约时间 date
+订单金额 float
+下单时间 date
+订单状态 varchar
+
+9.服务评价表comment
+主键id bigint
+被评论用户id bigint
+评价内容 varchar
+评价打分 int
+评论用户id bigint
