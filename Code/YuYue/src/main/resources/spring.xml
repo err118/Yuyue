@@ -13,7 +13,5 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	<context:component-scan base-package="com.yuyue.service" />
 	
 	<context:component-scan base-package="com.yuyue.serviceImpl" />
-
-	<!-- <bean id="keyMapper" class="com.changyu.foryou.mapper.KeyMapper">
-	</bean> -->
+	
 </beans>
