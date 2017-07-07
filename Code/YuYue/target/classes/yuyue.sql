@@ -89,6 +89,7 @@ CREATE TABLE `shop` (
   `shop_phone` varchar(50) DEFAULT NULL COMMENT '商户电话',
   `shop_address` varchar(50) DEFAULT NULL COMMENT '商户地址',
   `shop_status` int DEFAULT 0 COMMENT '商户状态',
+   `money` float(10, 1) DEFAULT NULL COMMENT '余额',
   `owner_id` bigint(20) DEFAULT NULL COMMENT '拥有者id',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)

@@ -5,6 +5,7 @@
 商户电话varcahr，
 商户地址varchar，
 商户状态 varcahr
+商户额度 float
 创建者id bigint
 创建时间 date
 
@@ -26,6 +27,15 @@
 商户id bigint
 是否主管理员status int 
 是否创建者 varcahr
+
+7.商户流水记录表
+主键bigint，
+店铺id，bigint
+订单id，bigint
+流水额度 float
+当前余额，float
+流水类别， int
+创建时间，
 
 
 
