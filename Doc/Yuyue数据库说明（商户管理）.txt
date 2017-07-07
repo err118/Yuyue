@@ -6,6 +6,7 @@
 商户地址varchar，
 商户状态 varcahr
 创建者id bigint
+创建时间 date
 
 
 2.商户的管理员表
@@ -15,6 +16,7 @@
 姓名 varcahr
 手机号 varchar 
 密码 varchar
+管理员状态 int
 最后登录时间 date
 
 
@@ -22,6 +24,7 @@
 自增主键 bigint
 管理员id bingint
 商户id bigint
+是否主管理员status int 
 是否创建者 varcahr
 
 
