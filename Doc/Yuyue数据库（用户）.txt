@@ -1,4 +1,4 @@
-2.用户表：user
+1.用户表：user
 自增主键bigint，
 token标识（varchar）              
 微信id（varchar）
@@ -11,13 +11,13 @@ token标识（varchar）
 创建时间 date
 最后登录时间date
 
-3.服务分类表service_category
+2.服务分类表service_category
 主键bigint
 分类名称name varchar
 状态 int
 添加时间date
 
-4.商户服务表service_shop
+3.商户服务表service_shop
 主键bigint
 名称name varchar
 服务标题 varchar
@@ -29,7 +29,7 @@ token标识（varchar）
 店铺id bigint
 添加时间 varchar
 
-5.服务表service_user
+4.服务表service_user
 主键bigint
 服务名称name varchar
 服务标题 varchar
@@ -41,7 +41,7 @@ token标识（varchar）
 用户id bigint
 添加时间varchar
 
-8.预约订单表order
+5.预约订单表order
 主键bigint
 订单号 bigint
 交易号（展示用，备用，同一个用户不重复varchar
@@ -54,10 +54,21 @@ token标识（varchar）
 下单时间 date
 订单状态 int
 
-9.服务评价表comment
+6.服务评价表comment
 主键id bigint
+订单号 bigint
 被评论用户id bigint
 评价内容 varchar
 评价打分 int
 评论用户id bigint
 评论时间 date
+
+7.用户流水记录表
+主键id bigint
+用户id bigint
+订单id bigint
+流水额度 float
+流水类别 int
+创建时间 date
+
+
