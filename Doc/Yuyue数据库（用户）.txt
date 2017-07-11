@@ -17,19 +17,7 @@ token标识（varchar）
 状态 int
 添加时间date
 
-3.商户服务表service_shop
-主键bigint
-名称name varchar
-服务标题 varchar
-服务介绍 varchar
-服务价格 float
-服务单位 varcahr
-服务状态 int
-分类id bigint
-店铺id bigint
-添加时间 varchar
-
-4.服务表service_user
+4.服务表service
 主键bigint
 服务名称name varchar
 服务标题 varchar
@@ -39,14 +27,21 @@ token标识（varchar）
 服务状态 varchar
 分类id bigint
 用户id bigint
+店铺id bigint
+服务类别 int （个人，商户）
 添加时间varchar
 
 5.预约订单表order
 主键bigint
 订单号 bigint
-交易号（展示用，备用，同一个用户不重复varchar
 下单用户id bigint
 服务id bigint
+服务名称varcahr
+用户id bigint
+店铺id bigint
+支付id int
+支付名称 varcahr
+支付状态 int
 订单备注 varchar
 开始时间 date
 结束时间 date
@@ -70,5 +65,6 @@ token标识（varchar）
 流水额度 float
 流水类别 int
 创建时间 date
+
 
 

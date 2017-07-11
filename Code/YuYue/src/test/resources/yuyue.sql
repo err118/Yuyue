@@ -14,7 +14,8 @@ CREATE TABLE `user` (
   `money` float(10, 1) DEFAULT NULL COMMENT '余额',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `last_time` datetime DEFAULT NULL COMMENT '最近登录时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `shop_id`(`shop_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 
@@ -46,7 +47,9 @@ CREATE TABLE `service` (
   `shop_id` bigint(20) DEFAULT NULL COMMENT '属于的店铺id',
   `type` int DEFAULT NULL COMMENT '服务类别（商户，个人）',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+   KEY `shop_id`(`shop_id`),
+   KEY `user_id`(`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='服务表';
 
 insert  into `service`(`name`,`content`,`user_id`) values ('服务1','服务1的内容',1);
@@ -55,15 +58,24 @@ insert  into `service`(`name`,`content`,`shop_id`) values ('服务2','服务2的
 CREATE TABLE `orders` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单id',
   `order_no` bigint(40) unsigned NOT NULL COMMENT '订单号',
-  `apply_user` bigint(20) NOT NULL COMMENT '下单用户id',
+  `user_id` bigint(20) NOT NULL COMMENT '下单用户id',
   `service_id` bigint(20) NOT NULL COMMENT '被申请的服务id',
+  `service_title` varchar(50) NOT NULL COMMENT '被申请的服务名称',
+  `server_id` bigint(20) NOT NULL COMMENT '被申请的服务者id',
+  `shop_id` bigint(20) NOT NULL COMMENT '被申请的店铺id',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `start_time` datetime DEFAULT NULL COMMENT '服务开始时间',
   `end_time` datetime DEFAULT NULL COMMENT '服务结束时间',
   `total_price` float(10,1) DEFAULT NULL COMMENT '订单金额',
   `status` int(10) DEFAULT NULL COMMENT '订单状态',
+  `pay_id` int DEFAULT NULL COMMENT '支付方式id',
+  `pay_name` varchar(50) DEFAULT NULL COMMENT '支付名称',
+  `pay_status` int DEFAULT NULL COMMENT '支付状态',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `apply_user`(`apply_user`),
+  KEY `user_id`(`user_id`),
+  KEY `shop_id` (`shop_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='订单表';
 
 insert  into `orders`(`order_no`,`apply_user`,`service_id`,`start_time`, `end_time`, `total_price`, `status`) 
@@ -73,14 +85,28 @@ values ('222',2,1, '2017-06-27 17:30', '2017-06-27 19:00', '8000', 0);
 
 CREATE TABLE `comment` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录表id',
-    `user_id` bigint(20) DEFAULT NULL COMMENT '被评论用户id',
-  `apply_user` bigint(20) DEFAULT NULL COMMENT '评论用户id',
+   `user_id` bigint(20) DEFAULT NULL COMMENT '评论用户id',
+  `server_id` bigint(20) DEFAULT NULL COMMENT '被评论用户id',
   `content` varchar(100) DEFAULT NULL COMMENT '评论内容',
   `grade` int DEFAULT NULL COMMENT '评价打分',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `user_id`(`user_id`),
+  KEY `server_id`(`server_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='评论表';
 insert  into `comment`(`user_id`,`apply_user`,`content`,`grade`) values('1', '2', '很好', 3);
+
+CREATE TABLE `user_record` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录表id',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
+  `order_id` bigint(20) DEFAULT NULL COMMENT '订单id',
+  `dealcost` float(10, 1) DEFAULT NULL COMMENT '交易额度',
+  `dealtype` int(10) DEFAULT NULL COMMENT '交易类别',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `user_id`(`user_id`),
+  KEY `order_id`(`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户账户流水记录表';
 
 CREATE TABLE `shop` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '商户id',
@@ -92,7 +118,8 @@ CREATE TABLE `shop` (
    `money` float(10, 1) DEFAULT NULL COMMENT '余额',
   `owner_id` bigint(20) DEFAULT NULL COMMENT '拥有者id',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `admin_id`(`owner_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='商户表';
 
 insert  into `shop`(`shop_name`,`owner_id`) values('商戶一', '1');
@@ -120,7 +147,8 @@ CREATE TABLE `shop_admin` (
   `admin_id` bigint(20) DEFAULT NULL COMMENT '管理员id',
   `shop_id` bigint(20) DEFAULT NULL COMMENT '店id',
   `status` int DEFAULT NULL COMMENT '是否主用戶',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `shop_id`(`shop_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='管理员店铺表';
 
 insert into `shop_admin` (`admin_id`, `shop_id`, `status`) values ('1', '1', '1'); 
