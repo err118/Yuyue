@@ -65,6 +65,7 @@ token标识（varchar）
 流水额度 float
 流水类别 int
 创建时间 date
+ 
 
 
 
