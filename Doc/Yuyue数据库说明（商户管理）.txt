@@ -30,9 +30,12 @@
 
 7.商户流水记录表
 主键bigint，
+下单用户id bigint
 店铺id，bigint
 订单id，bigint
+订单号 bigint
+服务者id bigint
+服务者昵称 bigint
 流水额度 float
-当前余额，float
 流水类别， int
 创建时间，date

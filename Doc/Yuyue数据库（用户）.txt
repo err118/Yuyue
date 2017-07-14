@@ -62,6 +62,7 @@ token标识（varchar）
 主键id bigint
 用户id bigint
 订单id bigint
+订单号id bigint
 流水额度 float
 流水类别 int
 创建时间 date
