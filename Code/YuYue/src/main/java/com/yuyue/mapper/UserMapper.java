@@ -14,4 +14,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+//    新增
+    User selectByWxId(String wxId);
 }

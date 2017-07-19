@@ -7,7 +7,7 @@ public class User {
 
     private String token;
 
-    private String wxid;
+    private String wxId;
 
     private String password;
 
@@ -15,7 +15,7 @@ public class User {
 
     private String phone;
 
-    private Long fatherid;
+    private Long fatherId;
 
     private Long shopId;
 
@@ -41,12 +41,12 @@ public class User {
         this.token = token == null ? null : token.trim();
     }
 
-    public String getWxid() {
-        return wxid;
+    public String getWxId() {
+        return wxId;
     }
 
-    public void setWxid(String wxid) {
-        this.wxid = wxid == null ? null : wxid.trim();
+    public void setWxId(String wxId) {
+        this.wxId = wxId == null ? null : wxId.trim();
     }
 
     public String getPassword() {
@@ -73,12 +73,12 @@ public class User {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Long getFatherid() {
-        return fatherid;
+    public Long getFatherId() {
+        return fatherId;
     }
 
-    public void setFatherid(Long fatherid) {
-        this.fatherid = fatherid;
+    public void setFatherId(Long fatherId) {
+        this.fatherId = fatherId;
     }
 
     public Long getShopId() {

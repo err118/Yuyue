@@ -5,11 +5,11 @@ USE `yuyue`;
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `token` varchar(50) DEFAULT NULL COMMENT '标识',
-  `wxid` varchar(50) DEFAULT NULL COMMENT '微信id',
+  `wx_id` varchar(50) DEFAULT NULL COMMENT '微信id',
   `password` char(50) DEFAULT NULL COMMENT '密码',
   `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
   `phone` varchar(50) DEFAULT NULL COMMENT '手机标识码',
-  `fatherid` bigint(20) DEFAULT NULL COMMENT '父用户id',
+  `father_id` bigint(20) DEFAULT NULL COMMENT '父用户id',
   `shop_id`  bigint(20) DEFAULT NULL COMMENT '属于的店铺id',
   `money` float(10, 1) DEFAULT NULL COMMENT '余额',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -19,9 +19,9 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 
-insert  into `user`(`token`,`wxid`,`password`,`nickname`,`phone`) values ('token1','wxid1','111111','haha','18801618932');
-insert  into `user`(`token`,`wxid`,`password`,`nickname`,`phone`) values ('token2','wxid2','222','gugu','18801618931');
-insert  into `user`(`token`,`wxid`,`password`,`nickname`,`phone`) values ('token3','wxid3','333','yuyu','18801618933');
+insert  into `user`(`token`,`wx_id`,`password`,`nickname`,`phone`) values ('token1','wxid1','111111','haha','18801618932');
+insert  into `user`(`token`,`wx_id`,`password`,`nickname`,`phone`) values ('token2','wxid2','222','gugu','18801618931');
+insert  into `user`(`token`,`wx_id`,`password`,`nickname`,`phone`) values ('token3','wxid3','333','yuyu','18801618933');
 
 
 CREATE TABLE `service_category` (
