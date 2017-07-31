@@ -8,7 +8,6 @@ token标识（varchar）
 余额  varcahr
 父用户id bigint
 店铺id bigint
-服务状态：int
 创建时间 date
 最后登录时间date
 
@@ -29,6 +28,7 @@ token标识（varchar）
 分类id bigint
 用户id bigint
 店铺id bigint
+服务评价打分grade int
 服务类别 int （个人，商户）
 添加时间varchar
 
@@ -54,6 +54,7 @@ token标识（varchar）
 主键id bigint
 订单号 bigint
 被评论用户id bigint
+被评论服务id
 评价内容 varchar
 评价打分 int
 评论用户id bigint
