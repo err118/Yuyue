@@ -170,3 +170,9 @@ CREATE TABLE `shop_record` (
   KEY `user_id`(`shop_id`),
   KEY `order_id`(`shop_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户账户流水记录表';
+
+--2017.07。31
+--service表增加grade字段
+ alter table service add column grade int default null after shop_id;
+
+

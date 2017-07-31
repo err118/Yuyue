@@ -22,6 +22,8 @@ public class Service {
     private Long userId;
 
     private Long shopId;
+    
+    private int grade; 
 
     private Integer type;
 
@@ -107,7 +109,15 @@ public class Service {
         this.shopId = shopId;
     }
 
-    public Integer getType() {
+    public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
+	public Integer getType() {
         return type;
     }
 

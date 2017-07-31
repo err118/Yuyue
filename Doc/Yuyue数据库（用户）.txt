@@ -6,8 +6,9 @@ token标识（varchar）
 手机号（varchar）
 密码（varchar），
 余额  varcahr
-父亲用户id bigint
+父用户id bigint
 店铺id bigint
+服务状态：int
 创建时间 date
 最后登录时间date
 
