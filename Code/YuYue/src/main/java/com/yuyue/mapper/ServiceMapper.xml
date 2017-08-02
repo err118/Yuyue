@@ -16,6 +16,14 @@
 		<result column="type" property="type" jdbcType="INTEGER" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
+	<resultMap type="com.yuyue.model.ServiceWithUserInfo" id="ServiceWithUserInfoMap"
+		extends="BaseResultMap">
+		<result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="shop" property="grade" jdbcType="SMALLINT" />
+		<result column="comment_count" property="commentNumber"
+			jdbcType="INTEGER" />
+	</resultMap>
 	<sql id="Base_Column_List">
 		id, name, title, content, price, unit, status, category_id,
 		user_id,
@@ -204,5 +212,13 @@
 		where id =
 		#{id,jdbcType=BIGINT}
 	</update>
-	
+	<!-- 以下为新增 -->
+	<select id="selectIndexServiceWithUser" resultType="com.yuyue.model.ServiceWithUserInfo">
+		SELECT
+		service.*, user.avatar_url, user.nickname, shop.shop_name
+		FROM service
+		INNER JOIN user ON service.user_id = user.id
+		LEFT JOIN shop ON
+		user.shop_id = shop.id
+	</select>
 </mapper>

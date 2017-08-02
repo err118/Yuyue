@@ -5,4 +5,5 @@ import com.yuyue.model.User;
 public interface UserService {
 	
 	User wxLogin(String wxCode);
+	int joinShop(String tokenId, int shopId);
 }

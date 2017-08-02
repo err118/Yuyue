@@ -174,5 +174,8 @@ CREATE TABLE `shop_record` (
 --2017.07。31
 --service表增加grade字段
  alter table service add column grade int default null after shop_id;
+-- 2017.08.01
+--user表增加avatar_url头像
+ alter table user add column avatar_url varchar(100) default null after nickname;
 
 

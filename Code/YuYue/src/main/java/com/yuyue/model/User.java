@@ -3,113 +3,124 @@ package com.yuyue.model;
 import java.util.Date;
 
 public class User {
-    private Long id;
+	private Long id;
 
-    private String token;
+	private String token;
 
-    private String wxId;
+	private String wxId;
 
-    private String password;
+	private String password;
 
-    private String nickname;
+	private String nickname;
 
-    private String phone;
+	private String avatarUrl;
 
-    private Long fatherId;
+	private String phone;
 
-    private Long shopId;
+	private Long fatherId;
 
-    private Float money;
+	private Long shopId;
 
-    private Date createTime;
+	private Float money;
 
-    private Date lastTime;
+	private Date createTime;
 
-    public Long getId() {
-        return id;
-    }
+	private Date lastTime;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getToken() {
-        return token;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setToken(String token) {
-        this.token = token == null ? null : token.trim();
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public String getWxId() {
-        return wxId;
-    }
+	public void setToken(String token) {
+		this.token = token == null ? null : token.trim();
+	}
 
-    public void setWxId(String wxId) {
-        this.wxId = wxId == null ? null : wxId.trim();
-    }
+	public String getWxId() {
+		return wxId;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setWxId(String wxId) {
+		this.wxId = wxId == null ? null : wxId.trim();
+	}
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getNickname() {
-        return nickname;
-    }
+	public void setPassword(String password) {
+		this.password = password == null ? null : password.trim();
+	}
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
-    }
+	public String getNickname() {
+		return nickname;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setNickname(String nickname) {
+		this.nickname = nickname == null ? null : nickname.trim();
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
 
-    public Long getFatherId() {
-        return fatherId;
-    }
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
 
-    public void setFatherId(Long fatherId) {
-        this.fatherId = fatherId;
-    }
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
+	}
 
-    public Long getShopId() {
-        return shopId;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone == null ? null : phone.trim();
+	}
 
-    public Float getMoney() {
-        return money;
-    }
+	public Long getFatherId() {
+		return fatherId;
+	}
 
-    public void setMoney(Float money) {
-        this.money = money;
-    }
+	public void setFatherId(Long fatherId) {
+		this.fatherId = fatherId;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Long getShopId() {
+		return shopId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
 
-    public Date getLastTime() {
-        return lastTime;
-    }
+	public Float getMoney() {
+		return money;
+	}
 
-    public void setLastTime(Date lastTime) {
-        this.lastTime = lastTime;
-    }
+	public void setMoney(Float money) {
+		this.money = money;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getLastTime() {
+		return lastTime;
+	}
+
+	public void setLastTime(Date lastTime) {
+		this.lastTime = lastTime;
+	}
 }

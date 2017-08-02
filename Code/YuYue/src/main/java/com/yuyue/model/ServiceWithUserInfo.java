@@ -2,17 +2,17 @@ package com.yuyue.model;
 
 public class ServiceWithUserInfo extends Service {
 	// 个人信息部分
-	private String imageUrl;
+	private String avatarUrl;
 	private String nickname;
 	// 店铺信息
 	private String shopName;
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getAvatarUrl() {
+		return avatarUrl;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
 	}
 
 	public String getNickname() {

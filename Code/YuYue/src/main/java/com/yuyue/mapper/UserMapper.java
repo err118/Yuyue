@@ -1,5 +1,7 @@
 package com.yuyue.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yuyue.model.User;
 
 public interface UserMapper {
@@ -16,4 +18,5 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 //    新增
     User selectByWxId(String wxId);
+    int joinShop(@Param("tokenId")String tokenId, @Param("shopId")int shopId);
 }

@@ -10,22 +10,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.yuyue.mapper.ServiceMapper;
 import com.yuyue.mapper.UserMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
-public class UserMappperTest {
-	private static final Logger LOGGER = Logger
-			.getLogger(UserMappperTest.class);
+public class ServiceMappperTest {
+	private static final Logger LOGGER = Logger.getLogger(ServiceMappperTest.class);
 	@Autowired
-	UserMapper userMapper;
+	ServiceMapper serviceMapper;
 
 	@Test
-	public void testSelectByWxId() {
-	LOGGER.debug(JSONObject.toJSONString(userMapper.selectByWxId("wxid1"), SerializerFeature.WriteMapNullValue));
-	}
-	@Test
-	public void testJoinShop() {
-	LOGGER.debug(JSONObject.toJSONString(userMapper.joinShop("token1", 1)));
+	public void testSelectIndexServceWithUser() {
+		LOGGER.debug(JSONObject.toJSONString(serviceMapper.selectIndexServiceWithUser(),
+				SerializerFeature.WriteMapNullValue));
 	}
 }

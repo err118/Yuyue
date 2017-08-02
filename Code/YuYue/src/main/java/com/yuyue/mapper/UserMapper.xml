@@ -7,6 +7,7 @@
 		<result column="wx_id" property="wxId" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="CHAR" />
 		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR" />
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
 		<result column="father_id" property="fatherId" jdbcType="BIGINT" />
 		<result column="shop_id" property="shopId" jdbcType="BIGINT" />
@@ -15,7 +16,9 @@
 		<result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, token, wx_id, password, nickname, phone, father_id, shop_id, money,
+		id, token, wx_id, password, nickname,avatar_url, phone,
+		father_id,
+		shop_id, money,
 		create_time,
 		last_time
 	</sql>
@@ -31,16 +34,22 @@
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 	<insert id="insert" parameterType="com.yuyue.model.User">
-		insert into user (id, token, wx_id,
-		password, nickname, phone,
+		insert into user (id, token,
+		wx_id,
+		password, nickname,avatar_url, phone,
 		father_id, shop_id, money,
 		create_time, last_time)
-		values (#{id,jdbcType=BIGINT}, #{token,jdbcType=VARCHAR},
+		values (#{id,jdbcType=BIGINT},
+		#{token,jdbcType=VARCHAR},
 		#{wxId,jdbcType=VARCHAR},
-		#{password,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-		#{fatherId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT},
+		#{password,jdbcType=CHAR}, #{nickname,jdbcType=VARCHAR},
+		#{avatarUrl,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{fatherId,jdbcType=BIGINT},
+		#{shopId,jdbcType=BIGINT},
 		#{money,jdbcType=REAL},
-		#{createTime,jdbcType=TIMESTAMP}, #{lastTime,jdbcType=TIMESTAMP})
+		#{createTime,jdbcType=TIMESTAMP},
+		#{lastTime,jdbcType=TIMESTAMP})
 	</insert>
 	<insert id="insertSelective" parameterType="com.yuyue.model.User">
 		insert into user
@@ -59,6 +68,9 @@
 			</if>
 			<if test="nickname != null">
 				nickname,
+			</if>
+			<if test="avatarUrl != null">
+				avatar_url,
 			</if>
 			<if test="phone != null">
 				phone,
@@ -95,6 +107,9 @@
 			<if test="nickname != null">
 				#{nickname,jdbcType=VARCHAR},
 			</if>
+			<if test="avatarUrl != null">
+				#{avatarUrl,jdbcType=VARCHAR},
+			</if>
 			<if test="phone != null">
 				#{phone,jdbcType=VARCHAR},
 			</if>
@@ -130,6 +145,9 @@
 			<if test="nickname != null">
 				nickname = #{nickname,jdbcType=VARCHAR},
 			</if>
+			<if test="avatarUrl != null">
+				avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+			</if>
 			<if test="phone != null">
 				phone = #{phone,jdbcType=VARCHAR},
 			</if>
@@ -153,16 +171,23 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.yuyue.model.User">
 		update user
-		set token = #{token,jdbcType=VARCHAR},
+		set
+		token = #{token,jdbcType=VARCHAR},
 		wx_id = #{wxId,jdbcType=VARCHAR},
 		password = #{password,jdbcType=CHAR},
-		nickname = #{nickname,jdbcType=VARCHAR},
+		nickname =
+		#{nickname,jdbcType=VARCHAR},
+		avatar_url =
+		#{avatarUrl,jdbcType=VARCHAR},
 		phone = #{phone,jdbcType=VARCHAR},
 		father_id = #{fatherId,jdbcType=BIGINT},
-		shop_id = #{shopId,jdbcType=BIGINT},
+		shop_id =
+		#{shopId,jdbcType=BIGINT},
 		money = #{money,jdbcType=REAL},
-		create_time = #{createTime,jdbcType=TIMESTAMP},
-		last_time = #{lastTime,jdbcType=TIMESTAMP}
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		last_time =
+		#{lastTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<!--新增 -->
@@ -172,4 +197,11 @@
 		from user
 		where wx_id = #{wxId,jdbcType=BIGINT}
 	</select>
+
+	<update id="joinShop">
+		update user
+		set
+		shop_id =  #{shopId, jdbcType=BIGINT}
+		where token = #{tokenId, jdbcType=VARCHAR}
+	</update>
 </mapper>

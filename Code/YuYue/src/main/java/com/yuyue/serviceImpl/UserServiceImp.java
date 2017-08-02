@@ -70,4 +70,11 @@ public class UserServiceImp implements UserService {
 		return user;
 	}
 
+	@Override
+	public int joinShop(String tokenId, int shopId) {
+		// TODO Auto-generated method stub
+		int status = userMapper.joinShop(tokenId, shopId);
+		return status;
+	}
+
 }
