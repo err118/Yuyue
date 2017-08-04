@@ -204,4 +204,10 @@
 		shop_id =  #{shopId, jdbcType=BIGINT}
 		where token = #{tokenId, jdbcType=VARCHAR}
 	</update>
+		<update id="leaveShop">
+		update user
+		set
+		shop_id = 0
+		where token = #{tokenId, jdbcType=VARCHAR}
+	</update>
 </mapper>

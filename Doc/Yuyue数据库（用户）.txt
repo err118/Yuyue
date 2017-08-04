@@ -68,6 +68,14 @@ token标识（varchar）
 流水额度 float
 流水类别 int
 创建时间 date
+
+
+待定
+8用户-店铺关系表
+主键id bigint
+店铺id int
+用户id int
+状态  int
  
 
 

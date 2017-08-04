@@ -19,4 +19,5 @@ public interface UserMapper {
 //    新增
     User selectByWxId(String wxId);
     int joinShop(@Param("tokenId")String tokenId, @Param("shopId")int shopId);
+    int leaveShop(@Param("tokenId")String tokenId);
 }
