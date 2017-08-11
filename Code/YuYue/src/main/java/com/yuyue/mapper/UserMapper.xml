@@ -202,7 +202,7 @@
 		update user
 		set
 		shop_id =  #{shopId, jdbcType=BIGINT}
-		where token = #{tokenId, jdbcType=VARCHAR}
+		where id = #{userId, jdbcType=BIGINT}
 	</update>
 		<update id="leaveShop">
 		update user

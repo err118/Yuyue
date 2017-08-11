@@ -18,6 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 //    新增
     User selectByWxId(String wxId);
-    int joinShop(@Param("tokenId")String tokenId, @Param("shopId")int shopId);
+    int joinShop(@Param("userId")long userId, @Param("shopId")long shopId);
     int leaveShop(@Param("tokenId")String tokenId);
 }

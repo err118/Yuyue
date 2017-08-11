@@ -26,7 +26,7 @@ public class UserMappperTest {
 	}
 	@Test
 	public void testJoinShop() {
-	LOGGER.debug(JSONObject.toJSONString(userMapper.joinShop("token1", 1)));
+	LOGGER.debug(JSONObject.toJSONString(userMapper.joinShop(1, 1)));
 	}	
 	@Test
 	public void testLeaveShop() {
