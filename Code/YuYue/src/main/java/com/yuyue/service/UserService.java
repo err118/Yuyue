@@ -6,4 +6,5 @@ public interface UserService {
 	
 	User wxLogin(String wxCode);
 	int joinShop(long userId, long shopId);
+	User getUserByToken(String tokenId);
 }

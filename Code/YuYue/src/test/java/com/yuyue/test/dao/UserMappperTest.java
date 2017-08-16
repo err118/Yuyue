@@ -13,7 +13,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yuyue.mapper.UserMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" ,"classpath:spring-redis.xml" })
 public class UserMappperTest {
 	private static final Logger LOGGER = Logger
 			.getLogger(UserMappperTest.class);

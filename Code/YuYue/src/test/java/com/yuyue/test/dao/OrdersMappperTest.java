@@ -1,6 +1,7 @@
 package com.yuyue.test.dao;
 
 import org.apache.commons.collections.OrderedMap;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -12,13 +13,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yuyue.mapper.OrdersMapper;
-import com.yuyue.mapper.ServiceMapper;
 import com.yuyue.mapper.UserMapper;
 import com.yuyue.model.Orders;
-import com.yuyue.model.Service;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" ,"classpath:spring-redis.xml" })
 public class OrdersMappperTest {
 	private static final Logger LOGGER = Logger.getLogger(OrdersMappperTest.class);
 	@Autowired

@@ -86,4 +86,10 @@ public class UserServiceImp implements UserService {
 		return status;
 	}
 
+	@Override
+	public User getUserByToken(String tokenId) {
+		// TODO Auto-generated method stub
+		return userMapper.selectByToken(tokenId);
+	}
+
 }

@@ -201,13 +201,20 @@
 	<update id="joinShop">
 		update user
 		set
-		shop_id =  #{shopId, jdbcType=BIGINT}
+		shop_id = #{shopId, jdbcType=BIGINT}
 		where id = #{userId, jdbcType=BIGINT}
 	</update>
-		<update id="leaveShop">
+	<update id="leaveShop">
 		update user
 		set
 		shop_id = 0
-		where token = #{tokenId, jdbcType=VARCHAR}
+		where token = #{tokenId,
+		jdbcType=VARCHAR}
 	</update>
+	<select id="selectByToken" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where token = #{tokenId,jdbcType=BIGINT}
+	</select>
 </mapper>

@@ -1,6 +1,10 @@
 package com.yuyue.model;
 
-public class ServiceWithUserInfo extends Service {
+public class ServiceWithUserInfo extends Services {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 个人信息部分
 	private String avatarUrl;
 	private String nickname;

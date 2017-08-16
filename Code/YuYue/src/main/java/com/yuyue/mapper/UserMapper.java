@@ -20,4 +20,5 @@ public interface UserMapper {
     User selectByWxId(String wxId);
     int joinShop(@Param("userId")long userId, @Param("shopId")long shopId);
     int leaveShop(@Param("tokenId")String tokenId);
+    User selectByToken(@Param("tokenId")String tokenId);
 }

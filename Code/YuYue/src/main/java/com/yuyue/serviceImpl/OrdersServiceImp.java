@@ -1,15 +1,20 @@
 package com.yuyue.serviceImpl;
 
-import org.springframework.core.annotation.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.yuyue.mapper.OrdersMapper;
+import com.yuyue.model.Orders;
 import com.yuyue.service.OrdersService;
 
-public class OrdersServiceImp implements OrdersService{
-
+@Service
+public class OrdersServiceImp implements OrdersService {
+	@Autowired
+	private OrdersMapper orderMapper;
 	@Override
-	public int submitOrder(Order order) {
+	public int submitOrder(Orders order) {
 		// TODO Auto-generated method stub
-		return 0;
+		return orderMapper.insert(order);
 	}
 
 }

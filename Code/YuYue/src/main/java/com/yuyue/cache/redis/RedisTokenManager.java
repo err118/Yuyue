@@ -1,5 +1,6 @@
 package com.yuyue.cache.redis;
 
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;

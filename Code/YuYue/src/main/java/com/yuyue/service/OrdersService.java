@@ -1,7 +1,7 @@
 package com.yuyue.service;
 
-import org.springframework.core.annotation.Order;
+import com.yuyue.model.Orders;
 
 public interface OrdersService {
-	int submitOrder(Order order);
+	int submitOrder(Orders order);
 }

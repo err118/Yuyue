@@ -2,6 +2,7 @@ package com.yuyue.controller;
 
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.yuyue.annotation.Authorization;
+import com.yuyue.annotation.NoAuthorization;
+import com.yuyue.model.ApiResponse;
 import com.yuyue.model.User;
 import com.yuyue.service.UserService;
 
@@ -24,26 +26,26 @@ public class UserController {
 	UserService userService;
 	final static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
+	@NoAuthorization
 	@RequestMapping(value = "/user/wxLogin/{code}", method = RequestMethod.GET)
-	public @ResponseBody User wxLogin(@PathVariable String code){
+	public @ResponseBody ApiResponse wxLogin(@PathVariable String code){
 		User user = userService.wxLogin(code);
-		return user;
+		return ApiResponse.successMessage("登录成功", user);
 	}
 	
-	@Authorization
+
 	@RequestMapping(value = "/user/joinShop", method = RequestMethod.POST)
-	public @ResponseBody JSONObject joinShop(@RequestParam String tokenId ,@RequestBody String body){
+	public @ResponseBody ApiResponse joinShop(@RequestParam String tokenId ,@RequestBody String body){
 		JSONObject obj = new JSONObject();
 		JSONObject bodyObj =  JSONObject.parseObject(body);
 		long shopId = bodyObj.getIntValue("shopId");
 		long userId = bodyObj.getIntValue("userId");
 		int status = userService.joinShop(userId, shopId);
 		if(status > 0){
-			obj.put("code", 100);
+			return ApiResponse.successMessage("加入成功", "");
 		}
 		else {
-			obj.put("code", 101);
+			 return ApiResponse.successMessage("加入失败", "");
 		}
-		return obj;
 	}
 }

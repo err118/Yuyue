@@ -34,7 +34,7 @@ CREATE TABLE `service_category` (
 insert  into `service_category`(`name`,`status`) values ('分类1',1);
 insert  into `service_category`(`name`,`status`) values ('分类2',1);
 
-CREATE TABLE `service` (
+CREATE TABLE `services` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '服务id',
   `name` varchar(50) DEFAULT NULL COMMENT '服务名称',
   `title` varchar(50) DEFAULT NULL COMMENT '服务标题',
@@ -52,8 +52,8 @@ CREATE TABLE `service` (
    KEY `user_id`(`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='服务表';
 
-insert  into `service`(`name`,`content`,`user_id`) values ('服务1','服务1的内容',1);
-insert  into `service`(`name`,`content`,`shop_id`) values ('服务2','服务2的内容',2);
+insert  into `services`(`name`,`content`,`user_id`) values ('服务1','服务1的内容',1);
+insert  into `services`(`name`,`content`,`shop_id`) values ('服务2','服务2的内容',2);
 
 CREATE TABLE `orders` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单id',
@@ -172,8 +172,8 @@ CREATE TABLE `shop_record` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户账户流水记录表';
 
 --2017.07。31
---service表增加grade字段
- alter table service add column grade int default null after shop_id;
+--services表增加grade字段
+ alter table services add column grade int default null after shop_id;
 -- 2017.08.01
 --user表增加avatar_url头像
  alter table user add column avatar_url varchar(100) default null after nickname;
