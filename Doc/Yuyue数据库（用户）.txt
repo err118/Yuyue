@@ -38,7 +38,8 @@ token标识（varchar）
 下单用户id bigint
 服务id bigint
 服务名称varcahr
-用户id bigint
+服务者id bigint
+服务者昵称 varchar
 店铺id bigint
 支付id int
 支付名称 varcahr

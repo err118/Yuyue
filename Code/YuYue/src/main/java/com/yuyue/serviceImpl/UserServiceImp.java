@@ -92,4 +92,10 @@ public class UserServiceImp implements UserService {
 		return userMapper.selectByToken(tokenId);
 	}
 
+	@Override
+	public User selectUserByPrimaryKey(long id) {
+		// TODO Auto-generated method stub
+		return userMapper.selectByPrimaryKey(id);
+	}
+
 }

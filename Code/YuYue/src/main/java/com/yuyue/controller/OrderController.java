@@ -1,8 +1,6 @@
 package com.yuyue.controller;
 
-
 import org.slf4j.Logger;
-
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.yuyue.annotation.NoAuthorization;
 import com.yuyue.model.ApiResponse;
 import com.yuyue.model.Orders;
+import com.yuyue.model.Services;
 import com.yuyue.model.User;
 import com.yuyue.service.OrdersService;
+import com.yuyue.service.ServiceService;
 import com.yuyue.service.UserService;
 
 @Controller
@@ -29,35 +29,41 @@ public class OrderController {
 	OrdersService orderService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	ServiceService serviceService;
 	final static Logger logger = LoggerFactory.getLogger(OrderController.class);
-	
+
 	@RequestMapping(value = "/order/submitOrder", method = RequestMethod.POST)
-	public @ResponseBody ApiResponse submitOrder(@RequestParam String tokenId ,@RequestBody String body){
-		JSONObject bodyObj =  JSONObject.parseObject(body);
+	public @ResponseBody ApiResponse submitOrder(@RequestParam String tokenId, @RequestBody String body) {
+		JSONObject bodyObj = JSONObject.parseObject(body);
 		User user = userService.getUserByToken(tokenId);
-		if(user != null){
+		if (user != null) {
 			long userId = user.getId();
-			String serviceTitle = bodyObj.getString("serviceTitle");
-			Long serverId = bodyObj.getLongValue("serverId");
-			String serverName = bodyObj.getString("serverName");
-			Float servicePrice = bodyObj.getFloatValue("servicePrice");
+			Long serviceId = bodyObj.getLongValue("serviceId");
 			String remarks = bodyObj.getString("remarks");
-			Float amount = bodyObj.getFloatValue("amount");
+			int quantity = bodyObj.getIntValue("quantity");
+			Services services = serviceService.getService(serviceId);
+			String servicesTitle = services.getTitle();
+			Float servicePrice = services.getPrice();
+			Long serverId = services.getUserId();
+			User server = userService.selectUserByPrimaryKey(serverId);
+			String serverName = server.getNickname();
+			Float amount = quantity * servicePrice;
 			Orders order = new Orders();
 			order.setUserId(userId);
-			order.setServiceTitle(serviceTitle);
-			order.setServiceId(serverId);
+			order.setServiceId(serviceId);
+			order.setServiceTitle(servicesTitle);
 			order.setServerId(serverId);
+			order.setServerName(serverName);
 			order.setRemark(remarks);
 			order.setTotalPrice(amount);
 			int status = orderService.submitOrder(order);
-			if(status > 0){
+			if (status > 0) {
 				return ApiResponse.successMessage("提交订单成功", "");
-			}
-			else return ApiResponse.successMessage("提交订单失败", "");
-		}
-		else {
-			 return ApiResponse.successMessage("提交订单失败", "");
+			} else
+				return ApiResponse.successMessage("提交订单失败", "");
+		} else {
+			return ApiResponse.successMessage("提交订单失败", "");
 		}
 	}
 }

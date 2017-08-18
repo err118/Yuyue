@@ -36,4 +36,10 @@ public class ServiceServiceImp implements ServiceService {
 		// TODO Auto-generated method stub
 		return serviceMapper.deleteByUserId(userId,serviceId);
 	}
+
+	@Override
+	public Services getService(long serviceId) {
+		// TODO Auto-generated method stub
+		return serviceMapper.selectByPrimaryKey(serviceId);
+	}
 }

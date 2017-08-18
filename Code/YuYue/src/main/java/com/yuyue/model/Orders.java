@@ -14,6 +14,8 @@ public class Orders {
     private String serviceTitle;
 
     private Long serverId;
+    
+    private String serverName;
 
     private Long shopId;
 
@@ -83,7 +85,15 @@ public class Orders {
         this.serverId = serverId;
     }
 
-    public Long getShopId() {
+    public String getServerName() {
+		return serverName;
+	}
+
+	public void setServerName(String serverName) {
+		this.serverName = serverName;
+	}
+
+	public Long getShopId() {
         return shopId;
     }
 

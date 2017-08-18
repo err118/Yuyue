@@ -177,5 +177,8 @@ CREATE TABLE `shop_record` (
 -- 2017.08.01
 --user表增加avatar_url头像
  alter table user add column avatar_url varchar(100) default null after nickname;
+ -- 2017.08.18
+--orders表增加订单服务者昵称
+ alter table orders add column server_name varchar(50) default null after server_id;
 
 

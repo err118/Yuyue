@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.webapp</groupId>
-  <artifactId>YuYue</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>YuYue Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <build>
-    <finalName>YuYue</finalName>
-    		<plugins>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.webapp</groupId>
+	<artifactId>YuYue</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>YuYue Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<build>
+		<finalName>YuYue</finalName>
+		<plugins>
 			<!-- Maven插件 配置 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -22,8 +22,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
-  </build>
-  	<properties>
+	</build>
+	<properties>
 		<!-- base setting -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.locales>zh_CN</project.build.locales>
@@ -58,7 +58,7 @@
 		<jackson.version>1.9.13</jackson.version>
 		<shiro.version>1.2.3</shiro.version>
 	</properties>
-		<dependencies>
+	<dependencies>
 		<!-- springframe start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -285,11 +285,14 @@
 		</dependency>
 		<!-- redis -->
 		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.6.0.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>2.6.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>2.7.3</version>
 		</dependency>
 		<!-- fastjson -->
 		<dependency>

@@ -7,4 +7,5 @@ public interface ServiceService {
 	ServiceWithUserInfo getIndexUser();
 	int publishService(Services service);
 	int deleteService(long serviceId , long userId);
+	Services getService(long serviceId);
 }
