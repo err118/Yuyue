@@ -8,4 +8,5 @@ public interface UserService {
 	int joinShop(long userId, long shopId);
 	User getUserByToken(String tokenId);
 	User selectUserByPrimaryKey(long id);
+	int updateUserInfo(User user);
 }

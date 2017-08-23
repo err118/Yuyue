@@ -1,82 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuyue.mapper.ShopAdminMapper">
-  <resultMap id="BaseResultMap" type="com.yuyue.model.ShopAdmin">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="admin_id" jdbcType="BIGINT" property="adminId" />
-    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, admin_id, shop_id, status
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from shop_admin
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from shop_admin
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.yuyue.model.ShopAdmin">
-    insert into shop_admin (id, admin_id, shop_id, 
-      status)
-    values (#{id,jdbcType=BIGINT}, #{adminId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.yuyue.model.ShopAdmin">
-    insert into shop_admin
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="adminId != null">
-        admin_id,
-      </if>
-      <if test="shopId != null">
-        shop_id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="adminId != null">
-        #{adminId,jdbcType=BIGINT},
-      </if>
-      <if test="shopId != null">
-        #{shopId,jdbcType=BIGINT},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yuyue.model.ShopAdmin">
-    update shop_admin
-    <set>
-      <if test="adminId != null">
-        admin_id = #{adminId,jdbcType=BIGINT},
-      </if>
-      <if test="shopId != null">
-        shop_id = #{shopId,jdbcType=BIGINT},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yuyue.model.ShopAdmin">
-    update shop_admin
-    set admin_id = #{adminId,jdbcType=BIGINT},
-      shop_id = #{shopId,jdbcType=BIGINT},
-      status = #{status,jdbcType=INTEGER}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+	<cache type="com.yuyue.cache.redis.RedisCache" />
+	<resultMap id="BaseResultMap" type="com.yuyue.model.ShopAdmin">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="admin_id" jdbcType="BIGINT" property="adminId" />
+		<result column="shop_id" jdbcType="BIGINT" property="shopId" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, admin_id, shop_id, status
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from shop_admin
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		shop_admin
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.yuyue.model.ShopAdmin">
+		insert into shop_admin (id,
+		admin_id, shop_id,
+		status)
+		values (#{id,jdbcType=BIGINT},
+		#{adminId,jdbcType=BIGINT},
+		#{shopId,jdbcType=BIGINT},
+		#{status,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.yuyue.model.ShopAdmin">
+		insert into shop_admin
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="adminId != null">
+				admin_id,
+			</if>
+			<if test="shopId != null">
+				shop_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="adminId != null">
+				#{adminId,jdbcType=BIGINT},
+			</if>
+			<if test="shopId != null">
+				#{shopId,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yuyue.model.ShopAdmin">
+		update shop_admin
+		<set>
+			<if test="adminId != null">
+				admin_id = #{adminId,jdbcType=BIGINT},
+			</if>
+			<if test="shopId != null">
+				shop_id = #{shopId,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yuyue.model.ShopAdmin">
+		update shop_admin
+		set admin_id = #{adminId,jdbcType=BIGINT},
+		shop_id =
+		#{shopId,jdbcType=BIGINT},
+		status = #{status,jdbcType=INTEGER}
+		where id
+		= #{id,jdbcType=BIGINT}
+	</update>
 </mapper>

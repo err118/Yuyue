@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yuyue.mapper.OrdersMapper">
+	<cache type="com.yuyue.cache.redis.RedisCache" />
 	<resultMap id="BaseResultMap" type="com.yuyue.model.Orders">
 		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="order_no" property="orderNo" jdbcType="BIGINT" />
@@ -256,4 +257,20 @@
 		#{createTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
+	<!-- 以下为新增 -->
+	<update id="deleteOrder">
+		update orders
+		set status = 1
+		where user_id =
+		#{userId,jdbcType=BIGINT}
+		and id = #{orderId,jdbcType=BIGINT}
+	</update>
+	<select id="getOrdersByUserId" resultMap="BaseResultMap">
+		select orders.* from
+		orders where user_id=#{userId,jdbcType=BIGINT} and status=0;
+	</select>
+	<select id="getPayOrder" resultMap="BaseResultMap">
+		select orders.* from
+		orders where user_id=#{userId,jdbcType=BIGINT} and id =#{orderId, jdbcType=BIGINT};
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.yuyue.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -64,6 +66,35 @@ public class OrderController {
 				return ApiResponse.successMessage("提交订单失败", "");
 		} else {
 			return ApiResponse.successMessage("提交订单失败", "");
+		}
+	}
+
+	@RequestMapping(value = "/order/deleteOrder", method = RequestMethod.POST)
+	public @ResponseBody ApiResponse deleteOrder(@RequestParam String tokenId, @RequestBody String body) {
+		JSONObject bodyObj = JSONObject.parseObject(body);
+		User user = userService.getUserByToken(tokenId);
+		if (user != null) {
+			long userId = user.getId();
+			long orderId = bodyObj.getLongValue("orderId");
+			int status = orderService.deleteOrder(userId, orderId);
+			if (status > 0) {
+				return ApiResponse.successMessage("提交订单成功", "");
+			} else
+				return ApiResponse.successMessage("提交订单失败", "");
+		} else {
+			return ApiResponse.successMessage("提交订单失败", "");
+		}
+	}
+
+	@RequestMapping(value = "/order/getMyOrder", method = RequestMethod.POST)
+	public @ResponseBody ApiResponse getMyOrder(@RequestParam String tokenId) {
+		User user = userService.getUserByToken(tokenId);
+		if (user != null) {
+			long userId = user.getId();
+			Orders orders = orderService.getMyOrder(userId);
+			return ApiResponse.successMessage("获取订单成功", orders);
+		} else {
+			return ApiResponse.successMessage("获取订单失败", "");
 		}
 	}
 }
