@@ -1,5 +1,7 @@
 package com.yuyue.serviceImpl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -21,7 +23,7 @@ public class ServiceServiceImp implements ServiceService {
 	private ServicesMapper serviceMapper;
 
 	@Override
-	public ServiceWithUserInfo getIndexUser() {
+	public List<ServiceWithUserInfo> getIndexUser() {
 		// TODO Auto-generated method stub
 		return serviceMapper.selectIndexServiceWithUser();
 	}

@@ -91,7 +91,7 @@ public class OrderController {
 		User user = userService.getUserByToken(tokenId);
 		if (user != null) {
 			long userId = user.getId();
-			Orders orders = orderService.getMyOrder(userId);
+			List<Orders> orders = orderService.getMyOrder(userId);
 			return ApiResponse.successMessage("获取订单成功", orders);
 		} else {
 			return ApiResponse.successMessage("获取订单失败", "");

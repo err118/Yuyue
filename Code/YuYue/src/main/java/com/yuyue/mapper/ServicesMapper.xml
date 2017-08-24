@@ -203,9 +203,11 @@
 	<!-- 以下为新增 -->
 	<select id="selectIndexServiceWithUser" resultType="com.yuyue.model.ServiceWithUserInfo">
 		SELECT
-		services.*, user.avatar_url, user.nickname, shop.shop_name
+		services.*, user.avatar_url, user.nickname,
+		shop.shop_name
 		FROM services
-		INNER JOIN user ON services.user_id = user.id
+		INNER JOIN user ON services.user_id =
+		user.id
 		LEFT JOIN shop ON
 		user.shop_id = shop.id
 	</select>

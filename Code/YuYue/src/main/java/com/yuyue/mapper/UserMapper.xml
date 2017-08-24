@@ -218,4 +218,11 @@
 		from user
 		where token = #{tokenId,jdbcType=BIGINT}
 	</select>
+	<select id="selectStaffs" resultMap="BaseResultMap">
+		select
+		user.*
+		from user, shop_staff
+		where shop_staff.shop_id = #{shopId,jdbcType=BIGINT}
+		and user.id = shop_staff.user_id;
+	</select>
 </mapper>

@@ -1,9 +1,6 @@
 package com.yuyue.serviceImpl;
 
-import java.util.List;
-
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,25 +8,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yuyue.cache.redis.TokenManager;
-import com.yuyue.mapper.UserMapper;
+import com.yuyue.mapper.AdminMapper;
+import com.yuyue.model.Admin;
 import com.yuyue.model.TokenModel;
-import com.yuyue.model.User;
-import com.yuyue.service.UserService;
-import com.yuyue.utils.Const;
-import com.yuyue.utils.GenerateTokenUtil;
-import com.yuyue.utils.HttpClientUtil;
+import com.yuyue.service.AdminService;
 
 @Transactional
 @Service
-public class UserServiceImp implements UserService {
+public class AdminServicImp implements AdminService {
 	final static Logger logger = LoggerFactory.getLogger(UserServiceImp.class);
 	@Autowired
-	private UserMapper userMapper;
+	AdminMapper adminMapper;
 	@Autowired
 	TokenManager tokenManager;
 
 	@Override
-	public User wxLogin(String unionId) {
+	public Admin wxLogin(String unionId) {
+		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		JSONObject data = new JSONObject();
 		JSONObject result = new JSONObject();
@@ -49,71 +44,39 @@ public class UserServiceImp implements UserService {
 		// jsonObject = JSONObject.parseObject(info);
 		// String nickname = jsonObject.getString("nickname");
 		// String imageUrl = jsonObject.getString("headimgurl");
-		User user = userMapper.selectByWxId(unionId);
-		if (user == null) {
-			user = new User();
-			user.setWxId(unionId);
-			int id = userMapper.insert(user);
+		Admin admin = adminMapper.selectByWxId(unionId);
+		if (admin == null) {
+			admin = new Admin();
+			admin.setAdminWxid(unionId);
+			int id = adminMapper.insert(admin);
 			if (id > 0) {
-				User newUser = userMapper.selectByWxId(unionId);
-				TokenModel model = tokenManager.createToken(newUser.getId());
-				newUser.setToken(model.getToken());
-				userMapper.updateByPrimaryKey(newUser);
-				logger.info("user insert succcess:" + newUser);
+				Admin newAdmin = adminMapper.selectByWxId(unionId);
+				TokenModel model = tokenManager.createToken(newAdmin.getId());
+				newAdmin.setAdminToken(model.getToken());
+				adminMapper.updateByPrimaryKey(newAdmin);
+				logger.info("user insert succcess:" + newAdmin);
 				// data.put("nickname", nickname);
 				// data.put("headimgurl", imageUrl);
 				// data.put("token", model.getToken());
 				result.put("code", "100");
 				result.put("msg", data);
-				return newUser;
+				return newAdmin;
 			} else {
-				logger.info("user insert fail:" + user);
+				logger.info("user insert fail:" + admin);
 				result.put("code", "101");
 				result.put("msg", "用户信息保存失败");
 			}
 		} else {
-			TokenModel model = tokenManager.createToken(user.getId());
+			TokenModel model = tokenManager.createToken(admin.getId());
 			// data.put("nickname", nickname);
 			// data.put("headimgurl", imageUrl);
 			// data.put("token", model.getToken());
-			logger.info("userInfo:" + user);
-			user.setToken(model.getToken());
-			userMapper.updateByPrimaryKey(user);
+			logger.info("userInfo:" + admin);
+			admin.setAdminToken(model.getToken());
+			adminMapper.updateByPrimaryKey(admin);
 			result.put("code", "100");
 			result.put("data", data);
 		}
-		return user;
-	}
-
-	@Override
-	public int joinShop(long userId, long shopId) {
-		// TODO Auto-generated method stub
-		int status = userMapper.joinShop(userId, shopId);
-		return status;
-	}
-
-	@Override
-	public User getUserByToken(String tokenId) {
-		// TODO Auto-generated method stub
-		return userMapper.selectByToken(tokenId);
-	}
-
-	@Override
-	public User selectUserByPrimaryKey(long id) {
-		// TODO Auto-generated method stub
-		return userMapper.selectByPrimaryKey(id);
-	}
-
-	@Override
-	public int updateUserInfo(User user) {
-		// TODO Auto-generated method stub
-		return userMapper.updateByPrimaryKey(user);
-	}
-
-	@Override
-	public List<User> getStaffs(Long shopId) {
-		// TODO Auto-generated method stub
-		List<User> userList = userMapper.selectStaffs(shopId);
-		return userList;
+		return admin;
 	}
 }

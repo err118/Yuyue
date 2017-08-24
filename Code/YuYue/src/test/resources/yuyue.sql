@@ -180,5 +180,15 @@ CREATE TABLE `shop_record` (
  -- 2017.08.18
 --orders表增加订单服务者昵称
  alter table orders add column server_name varchar(50) default null after server_id;
-
+--2017.08.24
+--增加员工店铺表
+CREATE TABLE `shop_staff` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
+  `shop_id` bigint(20) DEFAULT NULL COMMENT '店铺id',
+  `status` int DEFAULT NULL COMMENT '是否主用戶',
+  PRIMARY KEY (`id`),
+  KEY `shop_id`(`shop_id`)
+  KEY `user_id`(`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='员工和店铺对应表';
 

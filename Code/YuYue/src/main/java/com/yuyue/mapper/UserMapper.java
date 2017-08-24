@@ -1,5 +1,7 @@
 package com.yuyue.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.yuyue.model.User;
@@ -21,4 +23,5 @@ public interface UserMapper {
     int joinShop(@Param("userId")long userId, @Param("shopId")long shopId);
     int leaveShop(@Param("tokenId")String tokenId);
     User selectByToken(@Param("tokenId")String tokenId);
+    List<User> selectStaffs(@Param("shopId")Long shopId);
 }
