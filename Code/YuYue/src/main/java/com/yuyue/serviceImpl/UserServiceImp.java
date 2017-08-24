@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yuyue.cache.redis.TokenManager;
@@ -16,6 +17,7 @@ import com.yuyue.utils.Const;
 import com.yuyue.utils.GenerateTokenUtil;
 import com.yuyue.utils.HttpClientUtil;
 
+@Transactional
 @Service
 public class UserServiceImp implements UserService {
 	final static Logger logger = LoggerFactory.getLogger(UserServiceImp.class);
@@ -29,21 +31,24 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		JSONObject data = new JSONObject();
 		JSONObject result = new JSONObject();
-//		String resultStr = HttpClientUtil.dealGet("https://api.weixin.qq.com/sns/oauth2/access_token?appid="
-//				+ Const.WX_APPID + "&secret=" + Const.WX_SECRET + "&code=" + wxCode + "&grant_type=authorization_code");
-//		logger.info("wechat return:" + resultStr);
-//		JSONObject jsonObject = JSONObject.parseObject(resultStr);
-//		String accesstoken = jsonObject.getString("access_token");
-//		String openid = jsonObject.getString("openid");
-//		String unionId = jsonObject.getString("unionid");
-//		String info = HttpClientUtil
-//				.dealGet("https://api.weixin.qq.com/sns/userinfo?access_token=" + accesstoken + "&openid=" + openid);
-//		logger.info("wechat return:" + info);
-//		jsonObject = JSONObject.parseObject(info);
-//		String nickname = jsonObject.getString("nickname");
-//		String imageUrl = jsonObject.getString("headimgurl");
+		// String resultStr =
+		// HttpClientUtil.dealGet("https://api.weixin.qq.com/sns/oauth2/access_token?appid="
+		// + Const.WX_APPID + "&secret=" + Const.WX_SECRET + "&code=" + wxCode +
+		// "&grant_type=authorization_code");
+		// logger.info("wechat return:" + resultStr);
+		// JSONObject jsonObject = JSONObject.parseObject(resultStr);
+		// String accesstoken = jsonObject.getString("access_token");
+		// String openid = jsonObject.getString("openid");
+		// String unionId = jsonObject.getString("unionid");
+		// String info = HttpClientUtil
+		// .dealGet("https://api.weixin.qq.com/sns/userinfo?access_token=" +
+		// accesstoken + "&openid=" + openid);
+		// logger.info("wechat return:" + info);
+		// jsonObject = JSONObject.parseObject(info);
+		// String nickname = jsonObject.getString("nickname");
+		// String imageUrl = jsonObject.getString("headimgurl");
 		User user = userMapper.selectByWxId(unionId);
-		if(user == null){
+		if (user == null) {
 			user = new User();
 			user.setWxId(unionId);
 			int id = userMapper.insert(user);
@@ -53,9 +58,9 @@ public class UserServiceImp implements UserService {
 				newUser.setToken(model.getToken());
 				userMapper.updateByPrimaryKey(newUser);
 				logger.info("user insert succcess:" + newUser);
-//				data.put("nickname", nickname);
-//				data.put("headimgurl", imageUrl);
-//				data.put("token", model.getToken());
+				// data.put("nickname", nickname);
+				// data.put("headimgurl", imageUrl);
+				// data.put("token", model.getToken());
 				result.put("code", "100");
 				result.put("msg", data);
 				return newUser;
@@ -64,12 +69,11 @@ public class UserServiceImp implements UserService {
 				result.put("code", "101");
 				result.put("msg", "用户信息保存失败");
 			}
-		}
-		else {
+		} else {
 			TokenModel model = tokenManager.createToken(user.getId());
-//			data.put("nickname", nickname);
-//			data.put("headimgurl", imageUrl);
-//			data.put("token", model.getToken());
+			// data.put("nickname", nickname);
+			// data.put("headimgurl", imageUrl);
+			// data.put("token", model.getToken());
 			logger.info("userInfo:" + user);
 			user.setToken(model.getToken());
 			userMapper.updateByPrimaryKey(user);

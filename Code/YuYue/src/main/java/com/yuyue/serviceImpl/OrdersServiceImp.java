@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yuyue.mapper.OrdersMapper;
 import com.yuyue.model.Orders;
 import com.yuyue.service.OrdersService;
-
+@Transactional
 @Service
 public class OrdersServiceImp implements OrdersService {
 	@Autowired
