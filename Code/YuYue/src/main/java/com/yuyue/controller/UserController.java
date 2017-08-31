@@ -1,5 +1,7 @@
 package com.yuyue.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yuyue.annotation.NoAuthorization;
 import com.yuyue.model.ApiResponse;
+import com.yuyue.model.Staff;
 import com.yuyue.model.User;
 import com.yuyue.service.UserService;
 
@@ -56,15 +59,23 @@ public class UserController {
 			if (!"".equals(nickname))
 				user.setNickname(nickname);
 			int status = userService.updateUserInfo(user);
-			if(status > 0){
-				return ApiResponse.successMessage("更新成功","");
-			}
-			else {
+			if (status > 0) {
+				return ApiResponse.successMessage("更新成功", "");
+			} else {
 				return ApiResponse.failMessage("更新失败");
 			}
 
 		} else {
 			return ApiResponse.failMessage("无此用户");
 		}
+	}
+
+	// 获取注册用户主动加入的员工
+	@RequestMapping(value = "/user/getStaff", method = RequestMethod.POST)
+	public @ResponseBody ApiResponse getStaff(@RequestParam String tokenId, @RequestBody String body) {
+		JSONObject bodyObj = new JSONObject();
+		long shopId = bodyObj.getIntValue("shopId");
+		List<User> staff = userService.getStaffs(shopId);
+		return ApiResponse.successMessage("获取成功", staff);
 	}
 }

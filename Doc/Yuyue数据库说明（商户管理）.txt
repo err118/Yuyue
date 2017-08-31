@@ -21,7 +21,7 @@
 最后登录时间 date
 
 
-3.管理员_店铺关系
+4.管理员_店铺关系
 自增主键 bigint
 管理员id bingint
 商户id bigint
@@ -39,3 +39,17 @@
 流水额度 float
 流水类别， int
 创建时间，date
+
+5.员工表
+自增id bigint
+昵称varchar
+年龄 age 
+性别 sex
+身高 height
+图片介绍一
+图片介绍二
+图片介绍三
+6.员工-店铺服务表
+员工id
+服务id
+

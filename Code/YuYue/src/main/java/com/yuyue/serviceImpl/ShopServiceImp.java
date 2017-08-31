@@ -14,13 +14,13 @@ public class ShopServiceImp implements ShopService {
 	@Override
 	public int createNewShop(Shop shop) {
 		// TODO Auto-generated method stub
-		return shopMapper.insert(shop);
+		return shopMapper.insertSelective(shop);
 	}
 
 	@Override
 	public int updateShopInfo(Shop shop) {
 		// TODO Auto-generated method stub
-		return shopMapper.updateByPrimaryKey(shop);
+		return shopMapper.updateByPrimaryKeySelective(shop);
 	}
 
 }

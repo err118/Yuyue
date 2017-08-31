@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuyue.mapper.StaffMapper">
+  <resultMap id="BaseResultMap" type="com.yuyue.model.Staff">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="staff_no" jdbcType="VARCHAR" property="staffNo" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="coverone" jdbcType="VARCHAR" property="coverone" />
+    <result column="covertwo" jdbcType="VARCHAR" property="covertwo" />
+    <result column="coverthree" jdbcType="VARCHAR" property="coverthree" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="money" jdbcType="REAL" property="money" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nickname, staff_no, age, sex, coverone, covertwo, coverthree, shop_id, money, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yuyue.model.Staff">
+    insert into staff (id, nickname, staff_no, 
+      age, sex, coverone, 
+      covertwo, coverthree, shop_id, 
+      money, create_time)
+    values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{staffNo,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{coverone,jdbcType=VARCHAR}, 
+      #{covertwo,jdbcType=VARCHAR}, #{coverthree,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, 
+      #{money,jdbcType=REAL}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuyue.model.Staff">
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="staffNo != null">
+        staff_no,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="coverone != null">
+        coverone,
+      </if>
+      <if test="covertwo != null">
+        covertwo,
+      </if>
+      <if test="coverthree != null">
+        coverthree,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNo != null">
+        #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="coverone != null">
+        #{coverone,jdbcType=VARCHAR},
+      </if>
+      <if test="covertwo != null">
+        #{covertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="coverthree != null">
+        #{coverthree,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuyue.model.Staff">
+    update staff
+    <set>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNo != null">
+        staff_no = #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="coverone != null">
+        coverone = #{coverone,jdbcType=VARCHAR},
+      </if>
+      <if test="covertwo != null">
+        covertwo = #{covertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="coverthree != null">
+        coverthree = #{coverthree,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuyue.model.Staff">
+    update staff
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      staff_no = #{staffNo,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      coverone = #{coverone,jdbcType=VARCHAR},
+      covertwo = #{covertwo,jdbcType=VARCHAR},
+      coverthree = #{coverthree,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      money = #{money,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 新增 -->
+  <select id="selectByShopId" resultMap="BaseResultMap" >
+  select     
+  <include refid="Base_Column_List" />
+    from staff
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </select>
+</mapper>

@@ -223,6 +223,7 @@
 		user.*
 		from user, shop_staff
 		where shop_staff.shop_id = #{shopId,jdbcType=BIGINT}
-		and user.id = shop_staff.user_id;
+		and user.id = shop_staff.user_id
+		and shop_staff.status = 0
 	</select>
 </mapper>
