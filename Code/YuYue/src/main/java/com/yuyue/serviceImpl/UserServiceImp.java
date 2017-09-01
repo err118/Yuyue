@@ -1,6 +1,10 @@
 package com.yuyue.serviceImpl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.List;
+
 
 import org.slf4j.Logger;
 
@@ -9,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.druid.support.logging.Log;
 import com.alibaba.fastjson.JSONObject;
 import com.yuyue.cache.redis.TokenManager;
 import com.yuyue.mapper.UserMapper;
 import com.yuyue.model.TokenModel;
 import com.yuyue.model.User;
 import com.yuyue.service.UserService;
+import com.yuyue.utils.Base64;
 import com.yuyue.utils.Const;
 import com.yuyue.utils.GenerateTokenUtil;
 import com.yuyue.utils.HttpClientUtil;
@@ -105,15 +111,43 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public int updateUserInfo(User user) {
+	public int updateUserInfo(JSONObject obj, User user) {
 		// TODO Auto-generated method stub
+		String imageContent = obj.getString("imageContent");
+		if(!"".equals(imageContent)){
+			byte[] bytes = imageContent.getBytes();
+			bytes = Base64.decode(bytes, Base64.NO_WRAP);
+			// 将图片存到特定磁盘目录
+			FileOutputStream fos;
+			try {
+				fos = new FileOutputStream("D:\\下载\\ava.jpg");
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				baos.write(bytes, 0, bytes.length);
+				baos.writeTo(fos);
+				baos.flush();
+				baos.close();
+				fos.close();
+				// 将图片路径存到数据库
+				user.setAvatarUrl("D:\\下载\\ava.jpg");
+				updateUserInfo(user);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.info("updateUserInfo" + e.toString());
+			}
+		}
 		return userMapper.updateByPrimaryKey(user);
 	}
-
+	@Override
+	public int updateUserInfo(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.updateByPrimaryKeySelective(user);
+	}
 	@Override
 	public List<User> getStaffs(Long shopId) {
 		// TODO Auto-generated method stub
 		List<User> userList = userMapper.selectStaffs(shopId);
 		return userList;
 	}
+
 }

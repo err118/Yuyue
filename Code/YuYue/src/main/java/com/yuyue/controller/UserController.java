@@ -54,11 +54,7 @@ public class UserController {
 		User user = userService.getUserByToken(tokenId);
 		JSONObject bodyObj = JSONObject.parseObject(body);
 		if (user != null) {
-			long id = user.getId();
-			String nickname = bodyObj.getString("nickname");
-			if (!"".equals(nickname))
-				user.setNickname(nickname);
-			int status = userService.updateUserInfo(user);
+			int status = userService.updateUserInfo(bodyObj,user);
 			if (status > 0) {
 				return ApiResponse.successMessage("更新成功", "");
 			} else {

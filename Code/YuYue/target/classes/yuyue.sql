@@ -180,5 +180,50 @@ CREATE TABLE `shop_record` (
  -- 2017.08.18
 --orders表增加订单服务者昵称
  alter table orders add column server_name varchar(50) default null after server_id;
-
-
+--2017.08.24
+--增加用户店铺表
+CREATE TABLE `shop_staff` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
+  `shop_id` bigint(20) DEFAULT NULL COMMENT '店铺id',
+  `status` int DEFAULT NULL COMMENT '是否主用戶',
+  PRIMARY KEY (`id`),
+  KEY `shop_id`(`shop_id`),
+  KEY `user_id`(`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户和店铺对应表';
+--2017。08。30
+--增加添加的员工表
+CREATE TABLE `staff` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '员工id',
+  `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
+  `staff_no` VARCHAR(50) DEFAULT NULL COMMENT '员工编码',
+  `age` int DEFAULT NULL COMMENT '年龄',
+  `sex` VARCHAR(1) DEFAULT NULL COMMENT '性别',
+  `coverone` VARCHAR(50)  DEFAULT NULL COMMENT '图片介绍一',
+  `covertwo` VARCHAR(50)  DEFAULT NULL COMMENT '图片介绍二',
+  `coverthree` VARCHAR(50)  DEFAULT NULL COMMENT '图片介绍三',
+  `shop_id`  bigint(20) DEFAULT NULL COMMENT '属于的店铺id',
+  `money` float(10, 1) DEFAULT NULL COMMENT '余额',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `shop_id`(`shop_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='员工表';
+--增加员工-服务表
+CREATE TABLE `shopservices_staff` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `staff_id` bigint(20) DEFAULT NULL COMMENT '员工id',
+  `service_id` bigint(20) DEFAULT NULL COMMENT '服务id',
+  PRIMARY KEY (`id`),
+  KEY `staff_id`(`staff_id`),
+  KEY `service_id`(`service_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='员工和服务对应表';
+--增加用户-店铺
+CREATE TABLE `shop_user` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
+  `shop_id` bigint(20) DEFAULT NULL COMMENT '店铺id',
+  `status` int DEFAULT NULL COMMENT '是否主用戶',
+  PRIMARY KEY (`id`),
+  KEY `shop_id`(`shop_id`),
+  KEY `user_id`(`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户和店铺对应表';
