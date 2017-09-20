@@ -38,6 +38,7 @@ public class PayController {
 	RecordService recordService;
 	final static Logger logger = LoggerFactory.getLogger(PayController.class);
 
+	// 订单支付
 	@RequestMapping(value = "/pay", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse payOrder(@RequestParam String tokenId, @RequestBody String body) {
 		User user = userService.getUserByToken(tokenId);

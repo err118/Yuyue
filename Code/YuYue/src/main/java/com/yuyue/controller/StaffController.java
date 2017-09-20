@@ -24,7 +24,8 @@ public class StaffController {
 	@Autowired
 	StaffService staffService;
 	final static Logger logger = LoggerFactory.getLogger(StaffController.class);
-  //获取管理员添加的员工
+
+	// 获取管理员添加的员工
 	@RequestMapping(value = "/shopStaff/getStaff", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse getStaff(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = new JSONObject();
@@ -32,7 +33,8 @@ public class StaffController {
 		List<Staff> staff = staffService.getStaff(shopId);
 		return ApiResponse.successMessage("获取成功", staff);
 	}
-//管理员添加员工
+
+	// 管理员添加员工
 	@RequestMapping(value = "/shopStaff/addStaff", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse addStaff(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = new JSONObject();
@@ -57,7 +59,8 @@ public class StaffController {
 		}
 		return ApiResponse.failMessage("添加失败");
 	}
-//删除管理员添加的员工
+
+	// 删除管理员添加的员工
 	@RequestMapping(value = "/shopStaff/deleteStaff", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse deleteStaff(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = new JSONObject();

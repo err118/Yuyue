@@ -1,6 +1,6 @@
 package com.yuyue.test.dao;
 
-import org.apache.commons.collections.OrderedMap;
+
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -11,9 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yuyue.mapper.OrdersMapper;
-import com.yuyue.mapper.UserMapper;
 import com.yuyue.model.Orders;
 
 @RunWith(SpringJUnit4ClassRunner.class)

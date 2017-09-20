@@ -35,6 +35,7 @@ public class OrderController {
 	ServiceService serviceService;
 	final static Logger logger = LoggerFactory.getLogger(OrderController.class);
 
+	// 客户提交订单
 	@RequestMapping(value = "/order/submitOrder", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse submitOrder(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = JSONObject.parseObject(body);
@@ -69,6 +70,7 @@ public class OrderController {
 		}
 	}
 
+	// 客户删除订单
 	@RequestMapping(value = "/order/deleteOrder", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse deleteOrder(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = JSONObject.parseObject(body);
@@ -78,14 +80,15 @@ public class OrderController {
 			long orderId = bodyObj.getLongValue("orderId");
 			int status = orderService.deleteOrder(userId, orderId);
 			if (status > 0) {
-				return ApiResponse.successMessage("提交订单成功", "");
+				return ApiResponse.successMessage("删除订单成功", "");
 			} else
-				return ApiResponse.successMessage("提交订单失败", "");
+				return ApiResponse.successMessage("删除订单失败", "");
 		} else {
-			return ApiResponse.successMessage("提交订单失败", "");
+			return ApiResponse.successMessage("删除订单失败", "");
 		}
 	}
 
+	// 客户获取自己下过的订单
 	@RequestMapping(value = "/order/getMyOrder", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse getMyOrder(@RequestParam String tokenId) {
 		User user = userService.getUserByToken(tokenId);

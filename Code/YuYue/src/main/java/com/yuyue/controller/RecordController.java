@@ -35,6 +35,7 @@ public class RecordController {
 	RecordService recordService;
 	@Autowired
 	UserService userService;
+//	查询服务者(关联订单)收入以及提现记录
 	@RequestMapping(value = "/record/getRecord", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse getRecord(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = JSONObject.parseObject(body);

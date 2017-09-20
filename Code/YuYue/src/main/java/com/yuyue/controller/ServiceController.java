@@ -29,12 +29,14 @@ public class ServiceController {
 	@Autowired
 	UserService userService;
 
+	// 主页获取服务者
 	@NoAuthorization
 	@RequestMapping(value = "/service/getIndexUser", method = RequestMethod.GET)
 	public @ResponseBody List<ServiceWithUserInfo> getIndexUser() {
 		return serviceService.getIndexUser();
 	}
 
+	// 服务者发布服务
 	@RequestMapping(value = "/service/publishService", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse publishServie(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject obj = new JSONObject();

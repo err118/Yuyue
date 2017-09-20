@@ -28,6 +28,7 @@ public class UserController {
 	UserService userService;
 	final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
+	// 微信登录
 	@NoAuthorization
 	@RequestMapping(value = "/user/wxLogin/{code}", method = RequestMethod.GET)
 	public @ResponseBody ApiResponse wxLogin(@PathVariable String code) {
@@ -35,6 +36,7 @@ public class UserController {
 		return ApiResponse.successMessage("登录成功", user);
 	}
 
+	// 自由服务者或者用户加入店铺
 	@RequestMapping(value = "/user/joinShop", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse joinShop(@RequestParam String tokenId, @RequestBody String body) {
 		User user = userService.getUserByToken(tokenId);
@@ -49,12 +51,13 @@ public class UserController {
 		}
 	}
 
+	// 更新用户信息
 	@RequestMapping(value = "/user/updateUserInfo", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse updateuserInfo(@PathVariable String tokenId, @RequestBody String body) {
 		User user = userService.getUserByToken(tokenId);
 		JSONObject bodyObj = JSONObject.parseObject(body);
 		if (user != null) {
-			int status = userService.updateUserInfo(bodyObj,user);
+			int status = userService.updateUserInfo(bodyObj, user);
 			if (status > 0) {
 				return ApiResponse.successMessage("更新成功", "");
 			} else {
@@ -66,7 +69,7 @@ public class UserController {
 		}
 	}
 
-	// 获取注册用户主动加入的员工
+	// 店铺获取加入店铺的自由服务者
 	@RequestMapping(value = "/user/getStaff", method = RequestMethod.POST)
 	public @ResponseBody ApiResponse getStaff(@RequestParam String tokenId, @RequestBody String body) {
 		JSONObject bodyObj = new JSONObject();
